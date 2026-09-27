@@ -1,6 +1,6 @@
 public class Lanzador {
     
-    public int lanzar(String numero){
-        
+    public int lanzar(String nivel, String parametro){
+
     }
 }
