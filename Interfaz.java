@@ -27,7 +27,7 @@ public class Interfaz {
 
 
         Lanzador lanza = new Lanzador();
-        
+
 
         while (true){
 
@@ -42,6 +42,7 @@ public class Interfaz {
             }
 
             int codigoSalida = lanza.lanzar(nivel, parametro);
+            System.out.println("Operación completada. Código de salida: " + codigoSalida);
         }
 
         teclado.close();
