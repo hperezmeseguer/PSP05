@@ -6,6 +6,19 @@ public class Interfaz {
         
         Scanner teclado = new Scanner(System.in);
 
+        while (true){
+
+            System.out.println("Dime un número:");
+
+            String parametro = teclado.nextLine();
+
+            if(parametro.equals("salir")){
+                System.out.println("Saliendo...");
+                
+                break;
+            }
+        }
+
 
 
 
