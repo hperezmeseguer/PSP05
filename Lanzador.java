@@ -144,7 +144,70 @@ public class Lanzador {
 
             
             return codigoSalida;
+
+        } else if (nivel.equals("4")){
+
+            int codigoSalida = 0; 
+
+
+            try{
+
+                
+                ProcessBuilder proceso = new ProcessBuilder("factor", parametro);
+                
+                
+                Process factorizacion = proceso.start();
+                
+               
+                BufferedReader salidaFinal = new BufferedReader(new InputStreamReader(factorizacion.getInputStream()));
+                BufferedReader error = new BufferedReader(new InputStreamReader(factorizacion.getErrorStream()));
+               
+                
+                String linea;
+
+                
+                while ((linea = salidaFinal.readLine()) != null){
+                    System.out.println(linea);
+                    
+                }
+                
+                
+                while ((linea = error.readLine()) != null){
+                    System.out.println(linea);
+                }
+
+                //Convierto el número del usuario a Int
+                int numero = Integer.parseInt(parametro);
+
+                //Creo una variable que cuente los divisores
+                int divisores = 0;
+                
+                //Declaro que i es igual a 1 y mientras i sea menor que ese numero aumentará en uno
+                //Si el número que es divisible por i su resto es 0, se suma un divisor
+                for (int i = 1; i <= numero; i++){
+                    if (numero % i == 0){
+                        divisores ++;
+                    }
+                }
+
+                //Si el numero solo tiene 2 divisores es primo
+                if (divisores == 2){
+                    System.out.println("¡" + numero + " es primo!");
+                } else {
+                    System.out.println(numero + " no es primo");
+                }
+
+                
+                codigoSalida = factorizacion.waitFor();
+            
+            } catch (IOException | InterruptedException e){
+                e.printStackTrace();
+            }
+
+            
+            return codigoSalida;
         }
+        
         return 0;
 
     } 
