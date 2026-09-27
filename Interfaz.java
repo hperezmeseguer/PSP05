@@ -5,6 +5,7 @@ public class Interfaz {
     public static void main(String[] args){
         
         Scanner teclado = new Scanner(System.in);
+        Lanzador lanza = new Lanzador();
 
         while (true){
 
@@ -14,22 +15,12 @@ public class Interfaz {
 
             if(parametro.equals("salir")){
                 System.out.println("Saliendo...");
-                
+
                 break;
             }
+
+            int codigoSalida = lanza.lanzar(parametro);
         }
-
-
-
-
-
-
-
-
-
-
-
-
 
         teclado.close();
     }
