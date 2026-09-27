@@ -1,6 +1,8 @@
 import java.io.IOException;
 import java.io.BufferedReader;
+import java.io.FileWriter;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 
 
 public class Lanzador {
@@ -74,13 +76,13 @@ public class Lanzador {
                 
                 String linea;
 
-              
+                //añado OK
                 while ((linea = salidaFinal.readLine()) != null){
                     System.out.println("[OK] " + linea);
                     
                 }
                 
-                
+                // añado ERROR
                 while ((linea = error.readLine()) != null){
                     System.out.println("[ERROR] " + linea);
                 }
@@ -95,6 +97,53 @@ public class Lanzador {
             
             return codigoSalida;
 
+        } else if(nivel.equals("3")){
+
+            int codigoSalida = 0; 
+
+
+            try{
+
+                
+                ProcessBuilder proceso = new ProcessBuilder("factor", parametro);
+                
+                
+                Process factorizacion = proceso.start();
+                
+                //Creación de los ficheros nuevos donde se guardará la información
+                //true hace que el contenido se añada al final sin borrar lo anterior
+                BufferedReader salidaFinal = new BufferedReader(new InputStreamReader(factorizacion.getInputStream()));
+                BufferedReader error = new BufferedReader(new InputStreamReader(factorizacion.getErrorStream()));
+               
+                PrintWriter factorOutput = new PrintWriter(new FileWriter("factor_output.log", true));
+                PrintWriter factorError = new PrintWriter(new FileWriter("factor_error.log", true));
+
+                String linea;
+
+                //Lee las líneas y las escribe en el fichero
+                while ((linea = salidaFinal.readLine()) != null){
+                    factorOutput.println(linea);
+                    
+                }
+                
+                //Lee las líneas y las escribe en el fichero
+                while ((linea = error.readLine()) != null){
+                    factorError.println(linea);
+                }
+
+                
+                codigoSalida = factorizacion.waitFor();
+
+                //Se cierran los ficheros tras escribir en ellos
+                factorOutput.close();
+                factorError.close();
+            
+            } catch (IOException | InterruptedException e){
+                e.printStackTrace();
+            }
+
+            
+            return codigoSalida;
         }
         return 0;
 
