@@ -191,7 +191,7 @@ public class Lanzador {
                 }
 
                 //Si el numero solo tiene 2 divisores es primo
-                if (divisores == 2){
+                if (numero > 1 && divisores == 2){
                     System.out.println("¡" + numero + " es primo!");
                 } else {
                     System.out.println(numero + " no es primo");
@@ -207,9 +207,9 @@ public class Lanzador {
             
             return codigoSalida;
         }
-        
-        return 0;
 
+        //Si el nivel no coincide devuelve 0
+        return 0;
     } 
     
 }
