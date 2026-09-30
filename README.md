@@ -34,7 +34,7 @@ Esto fue lo que hice:
   El método devuelve un int que corresponde al código de salida. Este se guarda en la variable codigoSalida y lo sigue un print.
 
 
-#CLASE LANZADOR
+# CLASE LANZADOR
 
 Esto fue lo que hice:
 
